@@ -4,7 +4,7 @@ import images from './images';
 const routes = express.Router();
 
 routes.get('/', (req, res) => {
-    res.send('main resize route');
+  res.send('main resize route');
 });
 
 routes.use('/images', images);
