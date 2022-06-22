@@ -57,7 +57,7 @@ This will start the server using nodemon.
 
 ## Code Fixes
 
-As per the project's last review, the following points were adjusted:
+As per the project's review, the following points were adjusted:
 
 * Moved imageProcessing function to a separate module in the utils folder.
 * Moved jasmine, jasmine-spec-reporter and supertest to devDependencies.
@@ -65,3 +65,4 @@ As per the project's last review, the following points were adjusted:
 * Added imageProcessingSpec to the tests folder to test the imageProcessing function.
 * Added missing parameter type in the resize main route file index.ts.
 * Added additional tests to the images endpoint.
+* Added return type for the imageProcessing function.

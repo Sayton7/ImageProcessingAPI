@@ -5,7 +5,7 @@ const processImage = async (
   imageName: string,
   imageWidth: string,
   imageHeight: string
-) => {
+): Promise<void> => {
   const imageLocation = path.resolve('./' + `/assets/${imageName}.jpg`);
   const requestedImage =
     imageName + '_' + imageWidth + '_' + imageHeight + '.jpg';
