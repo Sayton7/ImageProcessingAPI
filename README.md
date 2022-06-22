@@ -57,3 +57,14 @@ This will run the build and jasmine scripts, which will build the code and run t
 
 ### `npm run start`
 This will start the server using nodemon.
+
+
+## Bug Fixes
+
+As per the project's last review, the following bugs were fixed:
+    * Moved imageProcessing function to a separate module in the utils folder.
+    * Moved jasmine, jasmine-spec-reporter and supertest to devDependencies.
+    * Added an error message for the user when using "0" as a value for width or height.
+    * Added imageProcessingSpec to the tests folder to test the imageProcessing function.
+    * Added missing parameter type in the resize main route file index.ts.
+    * Added additional tests to the images endpoint.

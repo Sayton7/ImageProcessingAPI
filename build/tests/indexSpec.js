@@ -20,8 +20,16 @@ describe('Testing endpoints', () => {
         const response = yield request.get('/resize/images?name=fjord&width=100&height=100');
         expect(response.status).toBe(200);
     }));
-    it('status of a bad request', () => __awaiter(void 0, void 0, void 0, function* () {
+    it('status of a bad request, missing data', () => __awaiter(void 0, void 0, void 0, function* () {
         const response = yield request.get('/resize/images?width=100&height=100');
+        expect(response.status).toBe(400);
+    }));
+    it('status of a bad request, invalid width or height', () => __awaiter(void 0, void 0, void 0, function* () {
+        const response = yield request.get('/resize/images?width=1x&height=100');
+        expect(response.status).toBe(400);
+    }));
+    it('status of a bad request, using 0 for width or height', () => __awaiter(void 0, void 0, void 0, function* () {
+        const response = yield request.get('/resize/images?width=0&height=100');
         expect(response.status).toBe(400);
     }));
     it('status of a not found request', () => __awaiter(void 0, void 0, void 0, function* () {
