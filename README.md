@@ -1,10 +1,6 @@
 # ImageProcessing API Project
 
 * A simple project where users can request images from the data base and specify their required size
-* The app consists of three main pages:
-    * Home: Where the user could view his answered and unanswered questions and interact with them.
-    * New Question: Where the user can post a new question.
-    * Leaderboard: Where the users get ranked based on their interaction
 * The server was build using express and nodejs.
 
 
@@ -59,12 +55,13 @@ This will run the build and jasmine scripts, which will build the code and run t
 This will start the server using nodemon.
 
 
-## Bug Fixes
+## Code Fixes
 
-As per the project's last review, the following bugs were fixed:
-    * Moved imageProcessing function to a separate module in the utils folder.
-    * Moved jasmine, jasmine-spec-reporter and supertest to devDependencies.
-    * Added an error message for the user when using "0" as a value for width or height.
-    * Added imageProcessingSpec to the tests folder to test the imageProcessing function.
-    * Added missing parameter type in the resize main route file index.ts.
-    * Added additional tests to the images endpoint.
+As per the project's last review, the following points were adjusted:
+
+* Moved imageProcessing function to a separate module in the utils folder.
+* Moved jasmine, jasmine-spec-reporter and supertest to devDependencies.
+* Added an error message for the user when using "0" as a value for width or height.
+* Added imageProcessingSpec to the tests folder to test the imageProcessing function.
+* Added missing parameter type in the resize main route file index.ts.
+* Added additional tests to the images endpoint.
