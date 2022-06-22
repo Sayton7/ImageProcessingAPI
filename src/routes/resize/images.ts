@@ -2,12 +2,13 @@ import { Router, Request, Response } from 'express';
 import path from 'path';
 import { promises as fs } from 'fs';
 import sharp from 'sharp';
+import checker from '../../utils/checker';
 
 const images = Router();
 
-images.get('/', async (req: Request, res: Response) => {
-  const imagesList = await fs.readdir('./assets/');
-  const renderedImagesList = await fs.readdir('./assets/thumbnails/');
+images.get('/', checker, (req: Request, res: Response) => {
+  const imageCached = res.locals.imageCached;
+  const imageFound = res.locals.imageFound;
   const imageName = req.query.name as string;
   const imageWidth = req.query.width as string;
   const imageHeight = req.query.height as string;
@@ -32,11 +33,13 @@ images.get('/', async (req: Request, res: Response) => {
     return res
       .status(400)
       .send('Bad request, Please enter your width and height in numbers');
-  } else if (!imagesList.includes(imageName + '.jpg')) {
+  } else if (imageCached) {
+    console.log('serving cached image')
+    return res.status(200).sendFile(requestedImageLocation);  
+  } else if (!imageFound) {
     return res.status(404).send('Image not found');
-  } else if (renderedImagesList.includes(requestedImage)) {
-    return res.status(200).sendFile(requestedImageLocation);
   } else {
+    console.log('serving rendered image')
     sharp(imageLocation)
       .resize(parseInt(imageWidth), parseInt(imageHeight))
       .toFile('./assets/thumbnails/' + requestedImage)
@@ -46,6 +49,9 @@ images.get('/', async (req: Request, res: Response) => {
           .sendFile(
             path.resolve('./' + '/assets/thumbnails/' + requestedImage)
           );
+      })
+      .catch((err) => {
+        return res.status(500).send(err);
       });
   }
 });
